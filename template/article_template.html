@@ -22,10 +22,11 @@
 		<div class="wrapper">
 		  <p>
 		    {{if gt .PagePrev 0 }}
-		     <a href="{{.PagePrev}}.html">前一页</a>
+		     <a href="{{.PagePrev}}.html">上一页</a>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			{{end}}
-		     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		     <a href="{{.PageNext}}.html">后一页</a>
+		     
+		     <a href="{{.PageNext}}.html">下一页</a>
 		  </p>
 		</div>
         <div class="main wrapper">
@@ -35,7 +36,14 @@
 			{{end}}
 		</div>
 		<div class="wrapper">
-		  <p><a href="{{.PagePrev}}.html">前一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{.PageNext}}.html">后一页</a><p>
+		  <p>
+		    {{if gt .PagePrev 0 }}
+		     <a href="{{.PagePrev}}.html">上一页</a>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			{{end}}
+		     
+		     <a href="{{.PageNext}}.html">下一页</a>
+		  </p>
 		</div>
 		<div class="wrapper">
 		   <!-- UJian Button BEGIN -->
@@ -48,7 +56,7 @@
 		<div class="footer">
 		  <div class="wrapper" >
 			  <h4>&copy; 2013 <a href="{{.SiteURL}}" >{{.SiteName}}</a> All Rights Reserved.</h4>
-		</div>
+		  </div>
 		</div>
 	</body>
 </html>
