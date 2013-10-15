@@ -22,7 +22,7 @@
         <div class="main wrapper">
 			<h2>{{.Head}}</h2>
 			{{range $i,$v:=.Content}}
-				 <li> <a href="{{add $i 1}}.html" >{{$v}}</a>   </li>
+				 <li> <a rel="bookmark" href="{{add $i 1}}.html" >{{$v}}</a>   </li>
 			{{end}}
 		</div>
 		<div class="footer">
