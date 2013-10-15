@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="ujianVerification" content="{{.SiteUjianVerification}}" />
+        <meta charset="utf-8" />
+        <title>{{.Title}}</title>
+        <meta name="keywords" content="{{.SiteKeywords}}"/>
+        <meta name="description" content="{{.SiteDescription}}"/>
+        <meta http-equiv="Window-target" content="_top" />
+		<link type="text/css" rel="stylesheet" href="base.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="wrapper"> 
+                <h1><a href="index.html">{{.SiteName}}</a></h1>
+            </div>
+        </div>
+
+        <div class="ad wrapper">
+
+        </div>
+        <div class="main wrapper">
+			<h2>{{.Head}}</h2>
+			{{range $i,$v:=.Content}}
+				 <li> <a href="{{add $i 1}}.html" >{{$v}}</a>   </li>
+			{{end}}
+		</div>
+	</body>
+</html>

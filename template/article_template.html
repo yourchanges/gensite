@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="ujianVerification" content="{{.SiteUjianVerification}}" />
+        <meta charset="utf-8" />
+        <title>{{.Title}}</title>
+        <meta name="keywords" content="{{.SiteKeywords}}"/>
+        <meta name="description" content="{{.SiteDescription}}"/>
+        <meta http-equiv="Window-target" content="_top" />
+        <link type="text/css" rel="stylesheet" href="base.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="wrapper"> 
+                <h1><a href="index.html">{{.SiteName}}</a></h1>
+            </div>
+        </div>
+
+        <div class="ad wrapper">
+
+        </div>
+		<div class="wrapper">
+		  <p>
+		    {{if gt .PagePrev 0 }}
+		     <a href="{{.PagePrev}}.html">前一页</a>
+			{{end}}
+		     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		     <a href="{{.PageNext}}.html">后一页</a>
+		  </p>
+		</div>
+        <div class="main wrapper">
+			<h2>{{.Head}}</h2>
+			{{range $i,$v:=.Content}}
+				 <p> {{$v}}   </p>
+			{{end}}
+		</div>
+		<div class="wrapper">
+		  <p><a href="{{.PagePrev}}.html">前一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{.PageNext}}.html">后一页</a><p>
+		</div>
+		<div class="wrapper">
+		   <!-- UJian Button BEGIN -->
+<div class="ujian-hook"></div>
+<script type="text/javascript">var ujian_config = {num:10,showType:3,bgColor:'#'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?uid=1589878"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->
+		</div>
+		<div class="footer">
+		  <div class="wrapper" >
+			  <h4>&copy; 2013 <a href="{{.SiteURL}}" >{{.SiteName}}</a> All Rights Reserved.</h4>
+		</div>
+		</div>
+	</body>
+</html>
+

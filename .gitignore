@@ -1,2 +1,4 @@
 out/*.html
+out/*.css
+out/*.js
 gensite

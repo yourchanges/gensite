@@ -1,4 +1,14 @@
-// gensite project main.go
+/*
+		Copyright (c) 2008 - 2013, yourchanges.tk/blog
+		All rights reserved.
+		作者: 李远军 (yourchanges@gmail.com)
+
+	gensite是一个命令行工具，主要用于读取给定的txt文本文件（通常是小说），经过解析后，生成一个小说静态站点。
+
+	该工具会读取当前目录下的conf.ini配置文件，同时基于article_template.html和index_template.html两个模板进行相应的静态页面的生成。
+
+
+*/
 package main
 
 import (
@@ -7,6 +17,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/config"
 	"html/template"
+	"io"
 	"log"
 	"os"
 	"path"
@@ -27,6 +38,7 @@ var (
 	IndexTemplatePath     string
 	ArticleTemplatePath   string
 	SourceFilePath        string
+	FilterDreck           string
 )
 
 type Site struct {
@@ -51,15 +63,17 @@ type Article struct { // 文章
 	PageNav
 }
 
+//初始化
 func init() {
 	os.Chdir(path.Dir(os.Args[0]))
 	AppPath = path.Dir(os.Args[0])
 	AppConfigPath = path.Join(AppPath, "conf.ini")
-	IndexTemplatePath = path.Join(AppPath, "index_template.html")
-	ArticleTemplatePath = path.Join(AppPath, "article_template.html")
+	IndexTemplatePath = path.Join(AppPath, "template", "index_template.html")
+	ArticleTemplatePath = path.Join(AppPath, "template", "article_template.html")
 	ParseConfig()
 }
 
+//解析配置文件
 func ParseConfig() (err error) {
 	AppConfig, err = config.NewConfig("ini", AppConfigPath)
 	if err != nil {
@@ -71,6 +85,7 @@ func ParseConfig() (err error) {
 		SiteDescription = AppConfig.String("SiteDescription")
 		SiteUjianVerification = AppConfig.String("SiteUjianVerification")
 		SourceFilePath = AppConfig.String("SourceFilePath")
+		FilterDreck = AppConfig.String("FilterDreck")
 		//if v, err := AppConfig.Int("httpport"); err == nil {
 		//	HttpPort = v
 		//}
@@ -85,6 +100,7 @@ func checkErr(err error) {
 	}
 }
 
+//写具体某篇文章页面
 func writeArticle(article Article, index int) {
 	article.PagePrev = index - 1
 	article.PageNext = index + 1
@@ -112,6 +128,7 @@ func writeArticle(article Article, index int) {
 	//c <- 1
 }
 
+//写index.html
 func writeIndex(indexPage Article, index int) {
 
 	funcs := template.FuncMap{"add": Add}
@@ -154,14 +171,26 @@ func writeIndex(indexPage Article, index int) {
 //	return w.Flush()
 //}
 
+//模版函数 add
 func Add(x, y int) int {
 	return x + y
 }
 
+//模版函数 gt
 func Gt(x, y int) bool {
 	return x > y
 }
 
+//过滤广告
+func filterDreck(line string) string {
+	r := line
+	if strings.Contains(line, FilterDreck) {
+		r = strings.Replace(line, FilterDreck, SiteURL+" "+SiteName, -1)
+	}
+	return r
+}
+
+//处理函数
 func readLines(path string) error {
 	file, err := os.Open(path)
 	if err != nil {
@@ -182,6 +211,10 @@ func readLines(path string) error {
 	for scanner.Scan() {
 		line := scanner.Text()
 		line = strings.TrimSpace(line)
+		if len(line) == 0 {
+			continue
+		}
+		line = filterDreck(line)
 		if strings.HasPrefix(line, "第") && strings.Contains(line, "卷 ") && strings.Contains(line, "章 ") {
 			if len(article.Content) == 0 {
 				intoArticle = true
@@ -221,11 +254,36 @@ func readLines(path string) error {
 	}
 	return scanner.Err()
 }
+
+//复制并覆盖文件
+func CopyFile(src, dst string) (w int64, err error) {
+	srcFile, err := os.Open(src)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer srcFile.Close()
+
+	dstFile, err := os.OpenFile(dst, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer dstFile.Close()
+
+	return io.Copy(dstFile, srcFile)
+}
+
+//主函数
 func main() {
 	fmt.Println("Starting")
 	err := readLines(SourceFilePath)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
+	}
+	_, err = CopyFile(path.Join(AppPath, "template", "base.css"), path.Join(AppPath, "out", "base.css"))
+	if err != nil {
+		log.Fatalf("copy file: %s", err)
 	}
 	fmt.Println("Finished")
 	//for i, line := range lines {
