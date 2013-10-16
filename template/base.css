@@ -46,6 +46,10 @@ a:hover {
     text-shadow: 1px 1px 0 #FFFFFF;
 }
 
+.header .wrapper h2 a {
+	color: #BB0000;
+}
+
 #bdshare {
     margin-top: 3px;
     float: right !important;
