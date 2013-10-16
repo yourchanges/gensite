@@ -62,7 +62,7 @@ a:hover {
     width: 758px;
 }
 
-.main h1 {
+.main h2 {
     background-image: url("images/title.png");
     color: #FFFFFF;
     height: 70px;
@@ -74,7 +74,7 @@ a:hover {
     width: 808px;
 }
 
-.main h1 a {
+.main h2 a {
     color: #FFF;
 }
 

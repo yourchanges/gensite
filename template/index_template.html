@@ -33,7 +33,7 @@
         </div>
         <div class="main">
             <div class="wrapper">
-			<h1><a href="index.html">{{.Head}}</a></h1>
+			<h2><a href="index.html">{{.Head}}</a></h2>
 			{{range $i,$v:=.Content}}
 				 <li> <a rel="bookmark" href="{{add $i 1}}.html" >{{$v}}</a>   </li>
 			{{end}}
