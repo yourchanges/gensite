@@ -11,58 +11,49 @@
     </head>
     <body>
         <div class="header">
-            <div class="wrapper">
-			    <h3><a href="index.html">{{.SiteName}}</a><h3> 
-                <!-- Share button start -->
-                <div class="bshare-custom icon-medium-plus">
-				<a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享到</a>
-				<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a>
-				<a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
-				<a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a>
-				<a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a>
-				<a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a>
-				<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-				<span class="BSHARE_COUNT bshare-share-count">0</span>
-				</div>
-				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=07ba84e6-134b-4db4-91ad-b9ff957bf8b0&amp;pophcol=2&amp;lang=zh"></script>
-				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-                <!-- Share button start -->
+            <div class="wrapper"> 
+                <h1><a href="index.html">{{.SiteName}}</a></h1>
             </div>
         </div>
-		<div class="main">
+
+        <div class="ad wrapper">
+
+        </div>
 		<div class="wrapper">
-		  <p class="center">
+		  <p>
 		    {{if gt .PagePrev 0 }}
 		     <a href="{{.PagePrev}}.html">上一页</a>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			{{end}}
 		     
 		     <a href="{{.PageNext}}.html">下一页</a>
 		  </p>
-		  
-			<h1><a href="index.html">{{.Head}}</a></h1>
+		</div>
+        <div class="main wrapper">
+			<h2>{{.Head}}</h2>
 			{{range $i,$v:=.Content}}
 				 <p> {{$v}}   </p>
 			{{end}}
-			<p class="center">
+		</div>
+		<div class="wrapper">
+		  <p>
 		    {{if gt .PagePrev 0 }}
 		     <a href="{{.PagePrev}}.html">上一页</a>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			{{end}}
 		     
 		     <a href="{{.PageNext}}.html">下一页</a>
 		  </p>
-		  <!-- UJian Button BEGIN -->
+		</div>
+		<div class="wrapper">
+		   <!-- UJian Button BEGIN -->
 <div class="ujian-hook"></div>
 <script type="text/javascript">var ujian_config = {num:10,showType:3,bgColor:'#'};</script>
 <script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?uid=1589878"></script>
 <a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
 <!-- UJian Button END -->
 		</div>
-		</div>
-		<div class="footer center">
+		<div class="footer">
 		  <div class="wrapper" >
 			  <h4>&copy; 2013 <a href="{{.SiteURL}}" >{{.SiteName}}</a> All Rights Reserved.</h4>
 		  </div>

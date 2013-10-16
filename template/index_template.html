@@ -11,27 +11,38 @@
     </head>
     <body>
         <div class="header">
-            <div class="wrapper"> 
-                <h1><a href="index.html">{{.SiteName}}</a></h1>
+            <div class="wrapper">
+				<h3><a href="index.html">{{.SiteName}}</a><h3> 
+                <!-- Share button start -->
+                <div class="bshare-custom icon-medium-plus">
+				<a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享到</a>
+				<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a>
+				<a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+				<a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a>
+				<a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a>
+				<a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a>
+				<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+				<span class="BSHARE_COUNT bshare-share-count">0</span>
+				</div>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=07ba84e6-134b-4db4-91ad-b9ff957bf8b0&amp;pophcol=2&amp;lang=zh"></script>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+                <!-- Share button start -->
             </div>
         </div>
-
-        <div class="ad wrapper">
-
-        </div>
-        <div class="main wrapper">
-			<h2>{{.Head}}</h2>
+        <div class="main">
+            <div class="wrapper">
+			<h1><a href="index.html">{{.Head}}</a></h1>
 			{{range $i,$v:=.Content}}
 				 <li> <a rel="bookmark" href="{{add $i 1}}.html" >{{$v}}</a>   </li>
 			{{end}}
+			</div>
 		</div>
 		<div class="footer">
-		  <div class="wrapper" >
+		  <div class="wrapper center">
 			  <h4>&copy; 2013 <a href="{{.SiteURL}}" >{{.SiteName}}</a> All Rights Reserved.</h4>
-		  </div>
-		  <div>
+		 
 			 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000110703'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000110703%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 		  </div>
-		</div>
+		  </div>
 	</body>
 </html>
